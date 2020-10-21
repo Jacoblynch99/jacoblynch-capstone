@@ -9,7 +9,6 @@ function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                {/* IMPORT COMPONENT HERE */}
                 <Router />
             </BrowserRouter>
         </Provider>
