@@ -17,8 +17,8 @@ const Login = (props) => {
 
     const submitForm = (e) => {
         e.preventDefault()
-        document.cookie = 'loggedIn=true;max-age=80*1000'
-        // set
+        document.cookie = 'loggedIn=true;max-age=8000000*1000'
+        window.location.replace('/user/landing')
     }
 
     if (path === '/business/login') {
@@ -84,44 +84,45 @@ const Login = (props) => {
                 style={{ height: '100vh', width: '100wh' }}
             >
                 <Grid item>
-                    <Typography variant="h4">Welcome Customer</Typography>
+                    <Typography variant="h4">Welcome User</Typography>
                 </Grid>
                 <Grid item>
-                    <form onSubmit={submitForm}>
-                        <Grid item>
-                            <TextField
-                                required
-                                name="username"
-                                label="Username"
-                                type="username"
-                                variant="outlined"
-                                value={state.username}
-                                onChange={handleTextChange}
-                                style={{ width: 200, marginTop: 20 }}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <TextField
-                                required
-                                name="password"
-                                label="Password"
-                                type="password"
-                                variant="outlined"
-                                onChange={handleTextChange}
-                                style={{ width: 200, marginTop: 20 }}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                value={state.password}
-                                onChange={handleTextChange}
-                                style={{ width: 200, marginTop: 20 }}
-                            >
-                                GEO
-                            </Button>
-                        </Grid>
+                    <form
+                        onSubmit={submitForm}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            flexDirection: 'column',
+                        }}
+                    >
+                        <TextField
+                            required
+                            name="username"
+                            label="Username"
+                            type="username"
+                            variant="outlined"
+                            value={state.username}
+                            onChange={handleTextChange}
+                            style={{ width: 200, marginTop: 20 }}
+                        />
+                        <TextField
+                            required
+                            name="password"
+                            label="Password"
+                            type="password"
+                            variant="outlined"
+                            value={state.password}
+                            onChange={handleTextChange}
+                            style={{ width: 200, marginTop: 20 }}
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            style={{ width: 200, marginTop: 20 }}
+                        >
+                            GEO
+                        </Button>
                     </form>
                 </Grid>
             </Grid>

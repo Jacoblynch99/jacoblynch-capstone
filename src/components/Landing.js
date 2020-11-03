@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Grid, Typography, Container } from '@material-ui/core'
+
 import { Link } from 'react-router-dom'
 
 const Landing = (props) => {
@@ -19,7 +20,7 @@ const Landing = (props) => {
                 alignItems="center"
             >
                 <Grid item>
-                    <Link to="/customer/login">Customer</Link>
+                    <Link to="/user/login">User</Link>
                 </Grid>
                 <Grid item>
                     <Link to="/business/login">Business</Link>
