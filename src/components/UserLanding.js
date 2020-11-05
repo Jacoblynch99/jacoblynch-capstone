@@ -9,11 +9,25 @@ import {
     CardContent,
     CardActions,
     Chip,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
 } from '@material-ui/core'
 import React, { useState } from 'react'
 
 const UserLanding = (props) => {
-    let [proffesion, setProfession] = useState('All')
+    const [proffesion, setProfession] = useState('All')
+    const [open, setOpen] = React.useState(false)
+
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     const selectFilter = (event) => {
         setProfession(event.target.value)
@@ -81,9 +95,48 @@ const UserLanding = (props) => {
                                     <Chip label={`Phone: ${phone}`} />
                                 </CardContent>
                                 <CardActions>
-                                    <Button size="small">Learn More</Button>
+                                    <Button
+                                        size="small"
+                                        onClick={handleClickOpen}
+                                    >
+                                        REQUEST SERVICE
+                                    </Button>
                                 </CardActions>
                             </Card>
+                            <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="draggable-dialog-title"
+                            >
+                                <DialogTitle
+                                    style={{ cursor: 'move' }}
+                                    id="draggable-dialog-title"
+                                >
+                                    Subscribe
+                                </DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        To subscribe to this website, please
+                                        enter your email address here. We will
+                                        send updates occasionally.
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button
+                                        autoFocus
+                                        onClick={handleClose}
+                                        color="primary"
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        onClick={handleClose}
+                                        color="primary"
+                                    >
+                                        Subscribe
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
                         </Box>
                     )
                 }
