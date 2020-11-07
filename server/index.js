@@ -4,6 +4,7 @@ const usersRouter = require('./routers/users')
 const authRouter = require('./routers/auth')
 const path = require('path')
 const businessRouter = require('./routers/business')
+const cors = require('cors')
 
 require('dotenv').config()
 
