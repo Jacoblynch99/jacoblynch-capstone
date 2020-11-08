@@ -5,12 +5,24 @@ const authRouter = require('./routers/auth')
 const path = require('path')
 const app = express()
 const cors = require('cors')
+app.use(express.static('build'))
+app.use(cors())
 
 require('dotenv').config()
 
-const port = process.env.PORT || 4001
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header('Content-Type', 'application/json')
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept, authorization'
+    )
+    res.header('Access-Control-Allow-Methods', '*')
+    next()
+})
 
-app.use(cors())
+const port = process.env.PORT || 4001
 
 app.use(bodyParser.json())
 app.use('/users', usersRouter)
