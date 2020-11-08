@@ -20,10 +20,6 @@ app.get('/', (req, res) => {
     res.send('Welcome to our server!')
 })
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'))
-})
-
 app.listen(port, () => {
     console.log(`Web server is listening on port ${port}!`)
 })
