@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const usersRouter = require('./routers/users')
 const authRouter = require('./routers/auth')
 const path = require('path')
-const businessRouter = require('./routers/business')
+
 const cors = require('cors')
 
 require('dotenv').config()
@@ -18,7 +18,6 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use('/users', usersRouter)
 app.use('/auth', authRouter)
-app.use('/business', businessRouter)
 
 app.get('/', (req, res) => {
     res.send('Welcome to our server!')

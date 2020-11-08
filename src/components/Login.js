@@ -68,7 +68,7 @@ const Login = (props) => {
                             color="primary"
                             style={{ width: 200, marginTop: 20 }}
                         >
-                            GEO
+                            Login
                         </Button>
                     </form>
                 </Grid>

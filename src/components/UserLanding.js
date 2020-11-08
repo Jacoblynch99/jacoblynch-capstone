@@ -11,17 +11,33 @@ import {
     Chip,
     Dialog,
     DialogTitle,
-    DialogContent,
-    DialogContentText,
     DialogActions,
+    Container,
 } from '@material-ui/core'
 import React, { useState } from 'react'
 
 const UserLanding = (props) => {
     const [proffesion, setProfession] = useState('All')
     const [open, setOpen] = React.useState(false)
+    const [ticket, setTicket] = useState({
+        userId: '',
+        businessId: '',
+        startDate: '',
+    })
+    const [quote, setQuote] = useState({
+        text: '',
+        author: '',
+    })
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (business_id) => {
+        setTicket((prevState) => ({
+            tickets: {
+                ...prevState.tickets,
+                userId: props.currentUser,
+                businessId: business_id,
+                startDate: new Date(),
+            },
+        }))
         setOpen(true)
     }
 
@@ -33,7 +49,25 @@ const UserLanding = (props) => {
         setProfession(event.target.value)
     }
 
+    const submitTicket = () => {
+        props.createTicket(ticket)
+    }
+
+    const adviceButton = () => {
+        generateRandomQuote()
+    }
+
+    const generateRandomQuote = () => {
+        let randomIndex = Math.floor(Math.random() * 1642) + 0
+        setQuote((prevState) => ({
+            ...prevState.quote,
+            text: `"${props.quotes[randomIndex].text}"`,
+            author: `-${props.quotes[randomIndex].author}`,
+        }))
+    }
+
     React.useEffect(() => props.getBusinesses(), [])
+    React.useEffect(() => props.getQuotes(), [])
 
     return (
         <Box style={{ height: '100vh', width: '100vw' }}>
@@ -49,7 +83,17 @@ const UserLanding = (props) => {
                     <MenuItem value={'Plumber'}>Plumber</MenuItem>
                 </Select>
             </AppBar>
-            {/* <Button onClick={props.getBusinesses}>CLICK ME</Button> */}
+            <Button onClick={adviceButton}>Want some advice?</Button>
+            <Container maxWidth="sm">
+                <Typography style={{ fontSize: 20, fontStyle: 'italic' }}>
+                    {' '}
+                    {quote.text}{' '}
+                </Typography>
+                <Typography style={{ fontSize: 12 }}>
+                    {' '}
+                    {quote.author}
+                </Typography>
+            </Container>
 
             {props.businesses.map((item, id) => {
                 let phone = ''
@@ -97,7 +141,9 @@ const UserLanding = (props) => {
                                 <CardActions>
                                     <Button
                                         size="small"
-                                        onClick={handleClickOpen}
+                                        onClick={() =>
+                                            handleClickOpen(item.business_id)
+                                        }
                                     >
                                         REQUEST SERVICE
                                     </Button>
@@ -112,29 +158,11 @@ const UserLanding = (props) => {
                                     style={{ cursor: 'move' }}
                                     id="draggable-dialog-title"
                                 >
-                                    Subscribe
+                                    Are you sure?
                                 </DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText>
-                                        To subscribe to this website, please
-                                        enter your email address here. We will
-                                        send updates occasionally.
-                                    </DialogContentText>
-                                </DialogContent>
                                 <DialogActions>
-                                    <Button
-                                        autoFocus
-                                        onClick={handleClose}
-                                        color="primary"
-                                    >
-                                        Cancel
-                                    </Button>
-                                    <Button
-                                        onClick={handleClose}
-                                        color="primary"
-                                    >
-                                        Subscribe
-                                    </Button>
+                                    <Button onClick={submitTicket}>Yes</Button>
+                                    <Button onClick={handleClose}>No</Button>
                                 </DialogActions>
                             </Dialog>
                         </Box>

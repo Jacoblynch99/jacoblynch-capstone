@@ -3,59 +3,41 @@ const pool = require('../sql/connection')
 const { handleSQLError } = require('../sql/error')
 require('dotenv').config()
 
-const getAllUsers = (req, res) => {
-  pool.query("SELECT * FROM users", (err, rows) => {
-    if (err) return handleSQLError(res, err)
-    return res.json(rows);
-  })
+const getAllBusinesses = (req, res) => {
+    pool.query(
+        'SELECT business_id, business_name, business_address, phone, email, zipcode, city,state, proffesions.proffesion FROM businesses INNER JOIN proffesions ON businesses.proffesion_id = proffesions.proffesion_id',
+        (err, rows) => {
+            if (err) return handleSQLError(res, err)
+            return res.json(rows)
+        }
+    )
 }
 
 const getUserById = (req, res) => {
-  let sql = "SELECT * FROM users WHERE id = ?"
-  sql = mysql.format(sql, [ req.params.id ])
+    let sql = 'SELECT * FROM users WHERE id = ?'
+    sql = mysql.format(sql, [req.params.id])
 
-  pool.query(sql, (err, rows) => {
-    if (err) return handleSQLError(res, err)
-    return res.json(rows);
-  })
+    pool.query(sql, (err, rows) => {
+        if (err) return handleSQLError(res, err)
+        return res.json(rows)
+    })
 }
 
-const createUser = (req, res) => {
-  const { firstName, lastName } = req.body
-  let sql = "INSERT INTO users (first_name, last_name) VALUES (?, ?)"
-  sql = mysql.format(sql, [ firstName, lastName ])
+const createTicket = (req, res) => {
+    const { userId, businessId, startDate } = req.body.postBody.tickets
 
-  pool.query(sql, (err, results) => {
-    if (err) return handleSQLError(res, err)
-    return res.json({ newId: results.insertId });
-  })
-}
+    let sql =
+        'INSERT INTO tickets (user_id, business_id, start_date) VALUES (?, ?, ?)'
+    sql = mysql.format(sql, [userId, businessId, startDate])
 
-const updateUserById = (req, res) => {
-  const { firstName, lastName } = req.body
-  let sql = "UPDATE users SET first_name = ?, last_name = ? WHERE id = ?"
-  sql = mysql.format(sql, [ firstName, lastName, req.params.id ])
-
-  pool.query(sql, (err, results) => {
-    if (err) return handleSQLError(res, err)
-    return res.status(204).json();
-  })
-}
-
-const deleteUserByFirstName = (req, res) => {
-  let sql = "DELETE FROM users WHERE first_name = ?"
-  sql = mysql.format(sql, [ req.params.first_name ])
-
-  pool.query(sql, (err, results) => {
-    if (err) return handleSQLError(res, err)
-    return res.json({ message: `Deleted ${results.affectedRows} user(s)` });
-  })
+    pool.query(sql, (err, results) => {
+        if (err) return handleSQLError(res, err)
+        return res.json({ newId: results.insertId })
+    })
 }
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  createUser,
-  updateUserById,
-  deleteUserByFirstName
+    getAllBusinesses,
+    getUserById,
+    createTicket,
 }
