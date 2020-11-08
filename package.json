@@ -34,11 +34,12 @@
         "redux-thunk": "^2.3.0"
     },
     "scripts": {
-        "client-install": "npm install --prefix client",
-        "start": "node index.js",
-        "server": "nodemon index.js",
-        "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "server": "nodemon ./server",
+        "start-dev": "concurrently \"npm run server\"  \"react-scripts start\"",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": "react-app"
