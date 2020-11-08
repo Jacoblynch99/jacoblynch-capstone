@@ -3,6 +3,10 @@
     "version": "0.1.0",
     "proxy": "http://localhost:9000",
     "private": true,
+    "engines": {
+        "npm": "6.14.4",
+        "node": "12.16.x"
+    },
     "dependencies": {
         "@material-ui/core": "^4.11.0",
         "@material-ui/icons": "^4.9.1",
@@ -34,10 +38,10 @@
         "redux-thunk": "^2.3.0"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "concurrently \"npm run server\" \"react-scripts start\" ",
+        "server": "nodemon Server/index.js",
+        "start-dev": "concurrently \"npm run server\" \"react-scripts start\" ",
         "build": "react-scripts build",
-        "server": "nodemon ./server",
-        "start-dev": "concurrently \"npm run server\"  \"react-scripts start\"",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
@@ -45,6 +49,7 @@
         "extends": "react-app"
     },
     "browserslist": {
+        "homepage": "./",
         "production": [
             ">0.2%",
             "not dead",
