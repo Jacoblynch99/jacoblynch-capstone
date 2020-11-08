@@ -3,10 +3,17 @@ const bodyParser = require('body-parser')
 const usersRouter = require('./routers/users')
 const authRouter = require('./routers/auth')
 const path = require('path')
+const inProduction = process.env.NODE_ENV === 'production'
 const app = express()
 const cors = require('cors')
 app.use(express.static('build'))
-app.use(cors())
+app.use(
+    cors({
+        origin: inProduction
+            ? 'http://localhost:5000'
+            : 'http://localhost:9000',
+    })
+)
 
 require('dotenv').config()
 
