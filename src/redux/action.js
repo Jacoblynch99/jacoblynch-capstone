@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const getBusinesses = () => {
     return function (dispatch) {
-        axios.get('http://localhost:9000/users').then((res) => {
+        axios.get('/users').then((res) => {
             const action = {
                 type: 'GET_BUSINESSES',
                 value: res.data,
@@ -26,7 +26,7 @@ export const getBusinesses = () => {
 
 export const createTicket = (postBody) => {
     return function (dispatch) {
-        axios.post('http://localhost:9000/users', { postBody }).then((res) => {
+        axios.post('/users', { postBody }).then((res) => {
             const action = {
                 type: 'POST_TICKET',
                 value: res.data,
