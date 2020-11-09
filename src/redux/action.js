@@ -19,7 +19,7 @@ import axios from 'axios'
 
 export const getBusinesses = () => {
     return function (dispatch) {
-        fetch(`/users`, {
+        fetch(`https://capstone-aca-jacoblynch.herokuapp.com/users`, {
             method: 'GET',
 
             headers: {

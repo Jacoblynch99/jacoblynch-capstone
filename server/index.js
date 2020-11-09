@@ -6,7 +6,6 @@ const path = require('path')
 const inProduction = process.env.NODE_ENV === 'production'
 const app = express()
 const cors = require('cors')
-app.use(express.static('build'))
 app.use(cors())
 require('dotenv').config()
 
@@ -25,7 +24,7 @@ app.use(function (req, res, next) {
 const port = process.env.PORT || 4001
 
 app.use(bodyParser.json())
-app.use('https://capstone-aca-jacoblynch.herokuapp.com/users', usersRouter)
+app.use('/users', usersRouter)
 app.use('/auth', authRouter)
 
 app.get('/', (req, res) => {
