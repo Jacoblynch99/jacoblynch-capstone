@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router'
 import cookie from 'cookie'
 import Landing from './components/Landing'
 import Login from './components/Login'
+import UserLanding from './containers/UserLanding'
 
 const Router = () => {
     const checkAuth = () => {
@@ -25,7 +26,8 @@ const Router = () => {
         <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/business/login" component={Login} />
-            <Route path="/customer/login" component={Login} />
+            <Route path="/user/login" component={Login} />
+            <ProtectedRoute path="/user/landing" component={UserLanding} />
         </Switch>
     )
 }

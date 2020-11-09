@@ -1,3 +1,5 @@
 export default {
-    // CREATE GLOBAL STATE HERE
+    businesses: [],
+    currentUser: 1,
+    quotes: [],
 }
