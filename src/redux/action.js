@@ -1,53 +1,53 @@
 import axios from 'axios'
 
+export const getBusinesses = () => {
+    return function (dispatch) {
+        axios
+            .get('/users')
+            .then((res) => {
+                const action = {
+                    type: 'GET_BUSINESSES',
+                    value: res.data,
+                }
+                dispatch(action)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+}
+
 // export const getBusinesses = () => {
 //     return function (dispatch) {
-//         axios
-//             .get('/users')
+//         fetch(`/users`, {
+//             method: 'GET',
+
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         })
 //             .then((res) => {
-//                 const action = {
-//                     type: 'GET_BUSINESSES',
-//                     value: res.data,
-//                 }
-//                 dispatch(action)
+//                 return res.json()
 //             })
-//             .catch((err) => {
-//                 console.log(err)
+//             .then((data) => {
+//                 dispatch(userBusiness(data))
+//             })
+
+//             .catch((error) => {
+//                 return {
+//                     type: 'error',
+//                     value: error,
+//                 }
 //             })
 //     }
 // }
 
-export const getBusinesses = () => {
-    return function (dispatch) {
-        fetch(`https://capstone-aca-jacoblynch.herokuapp.com/users`, {
-            method: 'GET',
-
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((res) => {
-                return res.json()
-            })
-            .then((data) => {
-                dispatch(userExpensesLoaded(data))
-            })
-
-            .catch((error) => {
-                return {
-                    type: 'error',
-                    value: error,
-                }
-            })
-    }
-}
-
-const userExpensesLoaded = (data) => {
-    return {
-        type: 'GET_BUSINESSES',
-        value: data,
-    }
-}
+// const userBusiness = (data) => {
+//     return {
+//         type: 'GET_BUSINESSES',
+//         value: data,
+//     }
+// }
 // export const getTicketInfo = () => {
 //     return function (dispatch) {
 //         axios.get(`http://localhost:9000/user/info/${id}`).then((res) => {
