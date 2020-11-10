@@ -21,10 +21,11 @@ const Login = (props) => {
         e.preventDefault()
         document.cookie = 'loggedIn=true;max-age=8000000*1000'
         setValid(true)
+        console.log(valid)
     }
 
     if (valid) {
-        return <Redirect path="/user/landing"></Redirect>
+        return <Redirect to="/user/landing"></Redirect>
     } else {
         return (
             <Grid
