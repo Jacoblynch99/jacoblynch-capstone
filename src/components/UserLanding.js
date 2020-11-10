@@ -66,10 +66,7 @@ const UserLanding = (props) => {
         }))
     }
 
-    const consol = () => {
-        console.log(props.businesses)
-    }
-    // React.useEffect(() => props.getBusinesses(), [])
+    React.useEffect(() => props.getBusinesses(), [])
     React.useEffect(() => props.getQuotes(), [])
 
     return (
@@ -97,9 +94,7 @@ const UserLanding = (props) => {
                     {quote.author}
                 </Typography>
             </Container>
-            <Button onClick={props.getBusinesses}> CLICK ME </Button>
-            <Button onClick={consol}>CONSOLE THIS</Button>
-            {/* {props.businesses.map((item, id) => {
+            {props.businesses.map((item, id) => {
                 let phone = ''
 
                 const cleaned = ('' + item.phone).replace(/\D/g, '')
@@ -172,7 +167,7 @@ const UserLanding = (props) => {
                         </Box>
                     )
                 }
-            })} */}
+            })}
         </Box>
     )
 }
