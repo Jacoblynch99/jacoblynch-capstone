@@ -20,7 +20,7 @@ const Landing = (props) => {
                 alignItems="center"
             >
                 <Grid item>
-                    <Link to="/user/login">User</Link>
+                    <Link to="/user/landing">User</Link>
                 </Grid>
                 <Grid item>
                     <Link to="/business/login">Business</Link>

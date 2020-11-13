@@ -17,37 +17,6 @@ export const getBusinesses = () => {
     }
 }
 
-// export const getBusinesses = () => {
-//     return function (dispatch) {
-//         fetch(`/users`, {
-//             method: 'GET',
-
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//         })
-//             .then((res) => {
-//                 return res.json()
-//             })
-//             .then((data) => {
-//                 dispatch(userBusiness(data))
-//             })
-
-//             .catch((error) => {
-//                 return {
-//                     type: 'error',
-//                     value: error,
-//                 }
-//             })
-//     }
-// }
-
-// const userBusiness = (data) => {
-//     return {
-//         type: 'GET_BUSINESSES',
-//         value: data,
-//     }
-// }
 // export const getTicketInfo = () => {
 //     return function (dispatch) {
 //         axios.get(`http://localhost:9000/user/info/${id}`).then((res) => {

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Grid, TextField, Button, Typography } from '@material-ui/core'
+import { Redirect } from 'react-router'
 
 const Login = (props) => {
     let [state, setState] = useState({
         username: '',
         password: '',
     })
+    const [valid, setValid] = useState(false)
 
     const path = props.location.pathname
 
@@ -18,62 +20,12 @@ const Login = (props) => {
     const submitForm = (e) => {
         e.preventDefault()
         document.cookie = 'loggedIn=true;max-age=8000000*1000'
-        window.location.replace('/user/landing')
+        setValid(true)
+        console.log(valid)
     }
 
-    if (path === '/business/login') {
-        return (
-            <Grid
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-                style={{ height: '100vh', width: '100wh' }}
-            >
-                <Grid item>
-                    <Typography variant="h4">Welcome Business</Typography>
-                </Grid>
-                <Grid item>
-                    <form
-                        onSubmit={submitForm}
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                        }}
-                    >
-                        <TextField
-                            required
-                            name="username"
-                            label="Username"
-                            type="username"
-                            variant="outlined"
-                            value={state.username}
-                            onChange={handleTextChange}
-                            style={{ width: 200, marginTop: 20 }}
-                        />
-                        <TextField
-                            required
-                            name="password"
-                            label="Password"
-                            type="password"
-                            variant="outlined"
-                            value={state.password}
-                            onChange={handleTextChange}
-                            style={{ width: 200, marginTop: 20 }}
-                        />
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            style={{ width: 200, marginTop: 20 }}
-                        >
-                            Login
-                        </Button>
-                    </form>
-                </Grid>
-            </Grid>
-        )
+    if (valid) {
+        return <Redirect to="/user/landing"></Redirect>
     } else {
         return (
             <Grid
@@ -131,3 +83,59 @@ const Login = (props) => {
 }
 
 export default Login
+
+// if (path === '/business/login') {
+//     return (
+
+//         <Grid
+//             container
+//             direction="column"
+//             justify="center"
+//             alignItems="center"
+//             style={{ height: '100vh', width: '100wh' }}
+//         >
+//             <Grid item>
+//                 <Typography variant="h4">Welcome Business</Typography>
+//             </Grid>
+//             <Grid item>
+//                 <form
+//                     onSubmit={submitForm}
+//                     style={{
+//                         display: 'flex',
+//                         justifyContent: 'center',
+//                         flexDirection: 'column',
+//                     }}
+//                 >
+//                     <TextField
+//                         required
+//                         name="username"
+//                         label="Username"
+//                         type="username"
+//                         variant="outlined"
+//                         value={state.username}
+//                         onChange={handleTextChange}
+//                         style={{ width: 200, marginTop: 20 }}
+//                     />
+//                     <TextField
+//                         required
+//                         name="password"
+//                         label="Password"
+//                         type="password"
+//                         variant="outlined"
+//                         value={state.password}
+//                         onChange={handleTextChange}
+//                         style={{ width: 200, marginTop: 20 }}
+//                     />
+//                     <Button
+//                         type="submit"
+//                         variant="contained"
+//                         color="primary"
+//                         style={{ width: 200, marginTop: 20 }}
+//                     >
+//                         Login
+//                     </Button>
+//                 </form>
+//             </Grid>
+//         </Grid>
+//     )
+// } else {
