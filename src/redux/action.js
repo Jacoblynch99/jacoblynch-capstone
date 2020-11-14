@@ -17,17 +17,17 @@ export const getBusinesses = () => {
     }
 }
 
-// export const getTicketInfo = () => {
-//     return function (dispatch) {
-//         axios.get(`http://localhost:9000/user/info/${id}`).then((res) => {
-//             const action = {
-//                 type: 'GET_BUSINESSES_INFO',
-//                 value: res.data,
-//             }
-//             dispatch(action)
-//         })
-//     }
-// }
+export const getTickets = () => {
+    return function (dispatch) {
+        axios.get(`/users/tickets`).then((res) => {
+            const action = {
+                type: 'GET_TICKETS',
+                value: res.data,
+            }
+            dispatch(action)
+        })
+    }
+}
 
 export const createTicket = (postBody) => {
     return function (dispatch) {

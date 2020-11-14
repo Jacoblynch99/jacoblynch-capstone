@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', usersController.getAllBusinesses)
 
-router.get('/:id', usersController.getUserById)
+router.get('/tickets', usersController.getAllTickets)
 
 router.post('/', usersController.createTicket)
 

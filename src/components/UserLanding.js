@@ -29,6 +29,8 @@ const UserLanding = (props) => {
         author: '',
     })
 
+    const [view, setView] = useState('businesses')
+
     const handleClickOpen = (business_id) => {
         setTicket((prevState) => ({
             tickets: {
@@ -46,7 +48,12 @@ const UserLanding = (props) => {
     }
 
     const selectFilter = (event) => {
-        setProfession(event.target.value)
+        if (event.target.name === 'proffesion') {
+            setProfession(event.target.value)
+        } else {
+            setView(event.target.value)
+            props.getTickets()
+        }
     }
 
     const submitTicket = () => {
@@ -66,24 +73,47 @@ const UserLanding = (props) => {
         }))
     }
 
+    const consol = () => {
+        console.log(props.tickets)
+    }
+
     React.useEffect(() => props.getBusinesses(), [])
+    React.useEffect(() => props.getTickets(), [])
     React.useEffect(() => props.getQuotes(), [])
 
     return (
         <Box style={{ height: '100vh', width: '100vw' }}>
             <AppBar color="secondary" position="relative">
-                <Select
-                    value={proffesion}
-                    onChange={selectFilter}
-                    style={{ width: 200 }}
-                >
-                    <MenuItem value={'All'}>All</MenuItem>
-                    <MenuItem value={'Landscaper'}>Landscaper</MenuItem>
-                    <MenuItem value={'Electrician'}>Electrician</MenuItem>
-                    <MenuItem value={'Plumber'}>Plumber</MenuItem>
-                </Select>
+                <Container maxWidth="sm">
+                    <Select
+                        value={proffesion}
+                        onChange={selectFilter}
+                        style={{ width: 200 }}
+                        name="proffesion"
+                    >
+                        <MenuItem value={'All'}>All</MenuItem>
+                        <MenuItem value={'Landscaper'}>Landscaper</MenuItem>
+                        <MenuItem value={'Electrician'}>Electrician</MenuItem>
+                        <MenuItem value={'Plumber'}>Plumber</MenuItem>
+                    </Select>
+
+                    <Select
+                        value={view}
+                        onChange={selectFilter}
+                        name="view"
+                        style={{ width: 200, marginLeft: 30 }}
+                    >
+                        <MenuItem value={'businesses'}>Place an order</MenuItem>
+                        <MenuItem value={'tickets'}>View tickets</MenuItem>
+                    </Select>
+                </Container>
             </AppBar>
-            <Button onClick={adviceButton}>Want some advice?</Button>
+            <Button onClick={adviceButton} style={{ color: 'black' }}>
+                Want some advice?
+            </Button>
+            <Button onClick={consol} style={{ color: 'black' }}>
+                CLICK ME{' '}
+            </Button>
             <Container maxWidth="sm">
                 <Typography style={{ fontSize: 20, fontStyle: 'italic' }}>
                     {' '}

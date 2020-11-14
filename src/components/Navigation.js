@@ -14,7 +14,7 @@ import useStyles from '../style'
 const Navigation = (props) => {
     const classes = useStyles()
     return (
-        <AppBar color="primary" position="relative">
+        <AppBar color="primary" position="relative" style={{ width: '100vw' }}>
             <Grid
                 item
                 container
@@ -26,7 +26,9 @@ const Navigation = (props) => {
                     <Avatar alt="Fluffer Nutter" src={pic} />
                 </Grid>
                 <Grid item className={classes.navTitle}>
-                    <Typography variant="h4">Carry On</Typography>
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                        Carry On
+                    </Typography>
                 </Grid>
                 <Grid item className={classes.menuIconStyle}>
                     <MenuIcon />

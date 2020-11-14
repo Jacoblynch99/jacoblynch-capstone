@@ -13,14 +13,14 @@ const getAllBusinesses = (req, res) => {
     )
 }
 
-const getUserById = (req, res) => {
-    let sql = 'SELECT * FROM users WHERE id = ?'
-    sql = mysql.format(sql, [req.params.id])
-
-    pool.query(sql, (err, rows) => {
-        if (err) return handleSQLError(res, err)
-        return res.json(rows)
-    })
+const getAllTickets = (req, res) => {
+    pool.query(
+        'SELECT business_name, start_date, end_date, is_active FROM tickets INNER JOIN businesses ON businesses.business_id = tickets.business_id',
+        (err, rows) => {
+            if (err) return handleSQLError(res, err)
+            return res.json(rows)
+        }
+    )
 }
 
 const createTicket = (req, res) => {
@@ -38,6 +38,6 @@ const createTicket = (req, res) => {
 
 module.exports = {
     getAllBusinesses,
-    getUserById,
+    getAllTickets,
     createTicket,
 }
