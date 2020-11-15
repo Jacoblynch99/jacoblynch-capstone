@@ -14,27 +14,37 @@ import useStyles from '../style'
 const Navigation = (props) => {
     const classes = useStyles()
     return (
-        <AppBar color="primary" position="relative" style={{ width: '100vw' }}>
-            <Grid
-                item
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="center"
+        <Grid
+            item
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+        >
+            <AppBar
+                color="primary"
+                position="relative"
+                style={{ width: '100vw' }}
             >
-                <Grid item className={classes.avatarIcon}>
+                {/* <Grid item className={classes.avatarIcon}>
                     <Avatar alt="Fluffer Nutter" src={pic} />
-                </Grid>
+                </Grid> */}
                 <Grid item className={classes.navTitle}>
-                    <Typography variant="h4" style={{ color: 'white' }}>
+                    <Typography
+                        variant="h4"
+                        style={{
+                            color: 'white',
+                            marginLeft: '45vw',
+                        }}
+                    >
                         Carry On
                     </Typography>
                 </Grid>
-                <Grid item className={classes.menuIconStyle}>
+                {/* <Grid item className={classes.menuIconStyle}>
                     <MenuIcon />
-                </Grid>
-            </Grid>
-        </AppBar>
+                </Grid> */}
+            </AppBar>
+        </Grid>
     )
 }
 

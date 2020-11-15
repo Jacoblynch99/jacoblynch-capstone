@@ -97,7 +97,7 @@ const UserLanding = (props) => {
                         <MenuItem value={'Plumber'}>Plumber</MenuItem>
                     </Select>
 
-                    <Select
+                    {/* <Select
                         value={view}
                         onChange={selectFilter}
                         name="view"
@@ -105,15 +105,15 @@ const UserLanding = (props) => {
                     >
                         <MenuItem value={'businesses'}>Place an order</MenuItem>
                         <MenuItem value={'tickets'}>View tickets</MenuItem>
-                    </Select>
+                    </Select> */}
                 </Container>
             </AppBar>
             <Button onClick={adviceButton} style={{ color: 'black' }}>
                 Want some advice?
             </Button>
-            <Button onClick={consol} style={{ color: 'black' }}>
+            {/* <Button onClick={consol} style={{ color: 'black' }}>
                 CLICK ME{' '}
-            </Button>
+            </Button> */}
             <Container maxWidth="sm">
                 <Typography style={{ fontSize: 20, fontStyle: 'italic' }}>
                     {' '}
@@ -127,6 +127,7 @@ const UserLanding = (props) => {
             {props.businesses.map((item, id) => {
                 let phone = ''
 
+                // formats phone number from 10 numbers in a row to standard format
                 const cleaned = ('' + item.phone).replace(/\D/g, '')
                 const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
                 if (match) {
